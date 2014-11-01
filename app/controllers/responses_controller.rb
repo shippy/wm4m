@@ -1,5 +1,6 @@
 class ResponsesController < ApplicationController
   def add
+    puts params
     response = Response.new(response_params)
     response.save
 
