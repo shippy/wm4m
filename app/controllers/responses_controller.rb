@@ -8,6 +8,7 @@ class ResponsesController < ApplicationController
     # TODO: Authentication logic (is the pebble ID registered here?)
 
     response = Response.new(response_params)
+    response.user = User.find(response_params[:response][:user])
     response.datetime = DateTime.now
 
     if response.save
