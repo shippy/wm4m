@@ -1,4 +1,6 @@
 class ResponsesController < ApplicationController
+  protect_from_forgery with: :null_session
+
   def add
     puts params
     response = Response.new(response_params)
