@@ -3,7 +3,7 @@ class CreateResponses < ActiveRecord::Migration
     create_table :responses do |t|
       t.string :kind
       t.integer :level
-      t.references :user
+      t.references :user, index: true
 
       t.timestamps
     end
