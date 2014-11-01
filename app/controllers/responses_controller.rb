@@ -8,7 +8,7 @@ class ResponsesController < ApplicationController
     # TODO: Authentication logic (is the pebble ID registered here?)
 
     response = Response.new(response_params)
-    response.user = User.find(response_params[:response][:user])
+    # response.user = User.find(response_params[:response][:user_id])
     response.datetime = DateTime.now
 
     if response.save
@@ -21,6 +21,6 @@ class ResponsesController < ApplicationController
   private
 
     def response_params
-      params.require(:response).permit(:kind, :level, :user)
+      params.require(:response).permit(:kind, :level, :user_id)
     end
 end
