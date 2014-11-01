@@ -2,14 +2,18 @@ class ResponsesController < ApplicationController
   protect_from_forgery with: :null_session
 
   def add
-    # debug
-    puts params
 
     # TODO: Authentication logic (is the pebble ID registered here?)
 
     response = Response.new(response_params)
     # response.user = User.find(response_params[:response][:user_id])
     response.datetime = DateTime.now
+
+
+    # debug
+    puts params
+    puts response_params
+    puts response
 
     if response.save
       render status: 200, text: "Success (response saved)"
