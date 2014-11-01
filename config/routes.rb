@@ -7,4 +7,7 @@ Rails.application.routes.draw do
 
   get 'dashboard' => 'dashboard#index'
   get 'dashboard/index'
+
+  get 'responses/add'
+  post 'responses/add'
 end
