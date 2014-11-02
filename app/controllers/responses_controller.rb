@@ -13,13 +13,16 @@ class ResponsesController < ApplicationController
     puts response_params
     puts response
 
+    stress_mean = Response.where(kind: "1", user: current_user).pluck(:level).last(5).sum / 5.0
+    happiness_mean = Response.where(kind: "2",user: current_user).pluck(:level).last(5).sum / 5.0
+    threshold = 1.5
+
     if response.save
-      if ((Response.where(kind: "1", user: current_user).pluck(:level).last(5).sum / 5.0) > 1.5) && \
-         ((Response.where(kind: "2",user: current_user).pluck(:level).last(5).sum / 5.0) < 1.5)
-          puts "Sending an e-mail triggered!"
-          ContactMailer.depressing_email(current_user, current_user.contacts.sample).deliver
+      if stress_mean > threshold && happiness_mean < threshold
+        puts "Sending an e-mail triggered!"
+        ContactMailer.depressing_email(current_user, current_user.contacts.sample).deliver
       else
-        puts "Sending an e-mail not triggered!"
+        puts "Sending an e-mail not triggered! Stress mean #{stress_mean}, happiness #{happiness_mean}"
       end
       render status: 200, text: "Success (response saved)"
     else
