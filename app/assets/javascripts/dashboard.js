@@ -251,7 +251,7 @@
                     } )
                     .on( 'mouseout', function( d ) {
                       d3.select( this )
-                        antr(
+                        .attr(
                           'class',
                           'lineChart--circle'
                         )
