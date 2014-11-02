@@ -3,6 +3,10 @@ class DashboardController < ApplicationController
     @q1 = Response.where(kind: "1").order(:datetime)
     @q2 = Response.where(kind: "2").order(:datetime)
 
+    if @q1.count < 3 || @q2.count < 3
+      @insufficient = true
+    end
+
     @answers1 = []
     @q1.each do |response|
       @answers1 << response.level

@@ -1,5 +1,10 @@
 <div class="header">
 <h1 class="text-center">YOUR HAPPINESS REPORT</h1>
+<% if @insufficient %>
+<p>
+  ...will be available here when more of your responses are available! Make sure you <%= link_to "set up your Pebble", setup_notice_path %> and <%= link_to "include your friends and supporters", contacts_setup_path %>!
+</p>
+<% end %>
 </div>
 <% content_for :extra_stylesheets do %>
   <%= stylesheet_link_tag "/dashboard" %>
@@ -15,6 +20,7 @@
       font-family: 'Quicksand';
      }
 </style>
+<% unless @insufficient %>
 <div id="srs" data-lat="<%= @q2.to_a %>"> </div>
 <div id="foo" data-lat="<%= @answers1 %>"> </div>
 <div id="datetime1" data-lat="<%= @dates1 %>"> </div>
@@ -64,6 +70,7 @@
     </li>
   </ul>
 </div>
+<% end %>
 <script type="text/javascript">
 </script>
 <%= yield :extra_javascripts %>
