@@ -1,12 +1,45 @@
 <div class="jumbotron">
+ <style>
+     h1 {
+      font-family: 'Quicksand';
+      font-weight: 700;
+      text-align: center;
+     }
+.btn {
+  -webkit-border-radius: 7;
+  -moz-border-radius: 7;
+  border-radius: 7px;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 43px;
+  background: #e95265;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+}
+
+.btn:hover {
+  background: #2fbdaa;
+  text-decoration: none;
+}
+
+
+</style>
+
   <h1>Watch Me For Me</h1>
-  <p>
+  <%= image_tag("wm4m.png", :alt => "logo") %>
+
+  <p style = "text-align: center">
     Yet another proof that Pebbles make everything better: We help you keep tabs on your own mind.
   </p>
-  <p>
-    <%= link_to 'Sign up today!', new_user_registration_path, class: '.btn .btn-default .btn-lg' %>
+  <br>
+  <p style = "text-align: center">
+    <%= link_to 'Sign up today!', new_user_registration_path, class: '.btn ' %>
+
   </p>
 </div>
+
+<link href='http://fonts.googleapis.com/css?family=Quicksand:300,400' rel='stylesheet' type='text/css'>
+
 <div class="row">
   <div class="col-md-4">
     <h2>Your Mind, Quantified</h2>

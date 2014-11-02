@@ -55,6 +55,23 @@ $d-chartHeight : 400px;
 // set base styles
 @import url(http://fonts.googleapis.com/css?family=Quicksand:300,400);
 
+.btn {
+  -webkit-border-radius: 7;
+  -moz-border-radius: 7;
+  border-radius: 7px;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 43px;
+  background: #e95265;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+}
+
+.btn:hover {
+  background: #2fbdaa;
+  text-decoration: none;
+}
+
 .header {
   margin-top: 40px;
   margin-bottom: -25px;
