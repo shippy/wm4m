@@ -1,0 +1,10 @@
+<div style="margin-top: 1em;">
+<%= form_for(:user, :url => session_path(:user)) do |f| %>
+  <p><%= f.label "Your e-mail:" %>
+  <%= f.text_field :email %></p>
+  <p><%= f.label "Password:" %>
+  <%= f.password_field :password %></p>
+  <%= f.hidden_field :pebble_token, value: @token %>
+  <p><%= f.submit 'Sign in' %></p>
+<% end %>
+</div>

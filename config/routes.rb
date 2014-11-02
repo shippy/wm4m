@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get 'dashboard' => 'dashboard#index'
   get 'dashboard/index'
 
-  get 'responses/add'
   post 'responses/add'
+
+  get 'pebble_settings/:pebble_token' => "users#connect_pebble", as: 'connect_pebble_sign_in'
 end
