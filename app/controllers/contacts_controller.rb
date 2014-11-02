@@ -62,6 +62,7 @@ class ContactsController < ApplicationController
   end
 
   def setup
+    @contact = Contact.new
   end
 
   private

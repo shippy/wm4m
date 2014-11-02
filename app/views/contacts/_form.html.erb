@@ -5,7 +5,7 @@
     <%= f.input :name %>
     <%= f.input :email %>
     <%= f.input :phone %>
-    <%= f.association :user %>
+    <%= f.input :user_id, as: :hidden, value: current_user.id %>
   </div>
 
   <div class="form-actions">
