@@ -20,65 +20,79 @@
   var yes = $("#happysum").data("lat");
   var no = $("#sadsum").data("lat");
 
+
+  var happy_d = "This is your happy meter! You have been happy more than half of the time! keep up the good work!";
+  var sad_d = "This is your happy meter, but it seems like you haven't been very happy lately. Maybe you should go see someone your care about."
+  var neutral_d = "This is your happy meter"
+  var display_d = ""
+
+  if (yes > .6) {
+    display_d = happy_d
+  }else if (yes > .5) {
+    display_d = neutral_d
+  } else{
+    display_d = sad_d
+  }
+
   console.log(yes);
   console.log(no);
   var data = {
     lineChart : [
       {
         date  : date1[0],
-        label : 'foo',
+        label : '1',
         value : lat[0]*400
       },
       {
         date  : date1[1],
-        label : 'bar',
+        label : '2',
         value : lat[1]*400
       },
       {
         date  : date1[2],
-        label : 'baz',
+        label : '3',
         value : lat[2]*400
       },
       {
         date  : date1[3],
-        label : 'boing',
+        label : '4',
         value : lat[3]*400
       },
       {
         date  : date1[4],
-        label : 'loool',
+        label : '5',
         value : lat[4]*400
       },
       {
         date  : date1[5],
-        label : 'YEAH',
+        label : '6',
         value : lat[5]*400
       },
       {
         date  : date1[6],
-        label : 'Hurray',
+        label : '7',
         value : lat[6]*400
       },
       {
         date  : date1[7],
-        label : 'WTF',
+        label : '8',
         value : lat[7]*400
       },
       {
         date  : date1[8],
-        label : 'OMG',
+        label : '9',
         value : lat[8]*400
       },
       {
         date  : date1[9],
-        label : 'ROFL',
+        label : '10',
         value : lat[9]*400
       }
     ],
     pieChart  : [
       {
         color       : 'yellow',
-        description : 'This is your happy meter',
+        description : display_d,
         title       : 'flowers',
         value       : yes
       },
