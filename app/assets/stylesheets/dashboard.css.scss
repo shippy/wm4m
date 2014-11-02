@@ -6,6 +6,8 @@
  */
 
 // color stuff
+
+
 $c-bg             : #fff;
 $c-baseColor      : #333;
 $c-baseColorBright: #666;
@@ -51,6 +53,18 @@ $f-spacing : 1px;
 $d-chartHeight : 400px;
 
 // set base styles
+@import url(http://fonts.googleapis.com/css?family=Quicksand:300,400);
+
+.header {
+  margin-top: 40px;
+  margin-bottom: -25px;
+}
+
+.navbar-collapse {
+  background-color: white;
+  color: white;
+}
+
 * {
   -moz-box-sizing: border-box;
   box-sizing: border-box;

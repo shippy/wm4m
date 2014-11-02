@@ -1,5 +1,6 @@
-<h1>Your Happiness Report</h1>
-
+<div class="header">
+<h1 class="text-center">YOUR HAPPINESS REPORT</h1>
+</div>
 <% content_for :extra_stylesheets do %>
   <%= stylesheet_link_tag "/dashboard" %>
 <% end %>
@@ -8,6 +9,12 @@
 <%= javascript_include_tag "dashboard.js" %>
 <% end %>
 
+<link href='http://fonts.googleapis.com/css?family=Quicksand:300,400' rel='stylesheet' type='text/css'>
+ <style>
+     h1 {
+      font-family: 'Quicksand';
+     }
+</style>
 <div id="foo" data-lat="<%= @answers1 %>"> </div>
 <div id="datetime1" data-lat="<%= @dates1 %>"> </div>
 <div class="charts--container">
@@ -54,5 +61,6 @@
     </li>
   </ul>
 </div>
-
+<script type="text/javascript">
+</script>
 <%= yield :extra_javascripts %>
