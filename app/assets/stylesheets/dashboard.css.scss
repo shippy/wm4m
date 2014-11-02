@@ -21,8 +21,8 @@ $c-dashedLine       : adjust-lightness( $c-baseColor, 40 );
 
 $c-borderDevider : $c-borderBright;
 
-$c-yellow  : #FFE280;
-$c-blue : #6bb7c7;
+$c-yellow  : #E95265;
+$c-blue : #80BAA4;
 
 // font-stuff
 $f-family : sans-serif;
@@ -61,8 +61,24 @@ $d-chartHeight : 400px;
 }
 
 .navbar-collapse {
-  background-color: white;
+  background-color: #80BAA4;
   color: white;
+  font-family: "Quicksand";
+  font-size: 16px;
+  border: none !important;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+  color: white !important;
+}
+
+.navbar-inverse {
+  background-color: #80BAA4 !important;
+}
+
+.navbar-brand {
+  color: white !important;
+  font-size: 16px !important;
 }
 
 * {

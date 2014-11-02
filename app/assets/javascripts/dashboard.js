@@ -13,8 +13,15 @@
   })();
 
 ;( function() {
+    var ans = $("#srs").data("lat");
+    console.log(ans);
   var lat = $("#foo").data("lat");
   var date1 = $("#datetime1").data("lat");
+  var yes = $("#happysum").data("lat");
+  var no = $("#sadsum").data("lat");
+
+  console.log(yes);
+  console.log(no);
   var data = {
     lineChart : [
       {
@@ -71,15 +78,15 @@
     pieChart  : [
       {
         color       : 'yellow',
-        description : 'Ipsem lorem text goes here. And foo goes bar goes baz. That\'s up!!!',
+        description : 'This is your happy meter',
         title       : 'flowers',
-        value       : 0.62
+        value       : yes
       },
       {
         color       : 'blue',
-        description : 'Another ipsem text goes here. And baz goes bar goes foo. Oh yeah, whazzz up?',
+        description : 'And this is your sad meter',
         title       : 'trains',
-        value       : 0.38
+        value       : no
       }
     ]
   };
@@ -230,7 +237,7 @@
                     } )
                     .on( 'mouseout', function( d ) {
                       d3.select( this )
-                        .attr(
+                        antr(
                           'class',
                           'lineChart--circle'
                         )

@@ -17,5 +17,17 @@ class DashboardController < ApplicationController
     @q2.each do |response|
       @answers2 << response.level
     end
+
+    @yes = 0.0
+    @no = 0.0
+    @q2.each do |response|
+      if response.level == 3
+        @yes = @yes + 1.0
+      elsif response.level == 1
+        @no = @no + 1.0
+      end
+    end
+    @yes = @yes/ (@yes + @no)
+    @no = 1 - @yes
   end
 end
