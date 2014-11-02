@@ -4,8 +4,10 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   def after_sign_in_path_for(resource_or_scope)
-    if URI.parse(request.referer).path == connect_pebble_sign_in_path(params[:user][:pebble_token])
-      URI.parse(request.referer).path
+    if params[:user]
+      if URI.parse(request.referer).path == connect_pebble_sign_in_path(params[:user][:pebble_token])
+        URI.parse(request.referer).path
+      end
     end
   end
 end
