@@ -1,55 +1,57 @@
 ;( function() {
+  var lat = $("#foo").data("lat");
+  var date1 = $("#datetime1").data("lat");
   var data = {
     lineChart : [
       {
-        date  : '2006-02-22',
+        date  : date1[0],
         label : 'foo',
-        value : 950
+        value : lat[0]*400
       },
       {
-        date  : '2006-08-22',
+        date  : date1[1],
         label : 'bar',
-        value : 1000
+        value : lat[1]*400
       },
       {
-        date  : '2007-01-11',
+        date  : date1[2],
         label : 'baz',
-        value : 700
+        value : lat[2]*400
       },
       {
-        date  : '2008-10-01',
+        date  : date1[3],
         label : 'boing',
-        value : 534
+        value : lat[3]*400
       },
       {
-        date  : '2009-02-24',
+        date  : date1[4],
         label : 'loool',
-        value : 1423
+        value : lat[4]*400
       },
       {
-        date  : '2010-12-30',
+        date  : date1[5],
         label : 'YEAH',
-        value : 1222
+        value : lat[5]*400
       },
       {
-        date  : '2011-05-15',
+        date  : date1[6],
         label : 'Hurray',
-        value : 948
+        value : lat[6]*400
       },
       {
-        date  : '2012-04-02',
+        date  : date1[7],
         label : 'WTF',
-        value : 1938
+        value : lat[7]*400
       },
       {
-        date  : '2013-08-19',
+        date  : date1[8],
         label : 'OMG',
-        value : 1245
+        value : lat[8]*400
       },
       {
-        date  : '2013-11-11',
+        date  : date1[9],
         label : 'ROFL',
-        value : 888
+        value : lat[9]*400
       }
     ],
     pieChart  : [
@@ -79,11 +81,10 @@
    */
   function drawLineChart( elementId, data ) {
     // parse helper functions on top
-    var parse = d3.time.format( '%Y-%m-%d' ).parse;
+    var parse = d3.time.format( '%Y-%m-%d %H:%M:%S' ).parse;
     // data manipulation first
     data = data.map( function( datum ) {
       datum.date = parse( datum.date );
-
       return datum;
     } );
 

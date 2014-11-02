@@ -8,6 +8,11 @@ class DashboardController < ApplicationController
       @answers1 << response.level
     end
 
+    @dates1 = []
+    @q1.each do |response |
+        @dates1 << response.datetime.to_formatted_s(:db)
+    end
+
     @answers2 = []
     @q2.each do |response|
       @answers2 << response.level

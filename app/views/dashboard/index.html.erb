@@ -1,6 +1,4 @@
-<h1>Dashboard#index</h1>
-<p>Find me in app/views/dashboard/index.html.erb</p>
-<p><%= @q1.to_a %></p>
+<h1>Your Happiness Report</h1>
 
 <% content_for :extra_stylesheets do %>
   <%= stylesheet_link_tag "/dashboard" %>
@@ -10,7 +8,8 @@
 <%= javascript_include_tag "dashboard.js" %>
 <% end %>
 
-
+<div id="foo" data-lat="<%= @answers1 %>"> </div>
+<div id="datetime1" data-lat="<%= @dates1 %>"> </div>
 <div class="charts--container">
   <ul>
     <li class="chart">
@@ -41,7 +40,7 @@
     </li>
     <li class="chart">
       <h3 class="chart--subHeadline">STRESS</h3>
-      <h2 class="chart--headline">Stress Levels</h2>
+      <h2 class="chart--headline">Stress History</h2>
       <div id="lineChart">
         <svg id="lineChartSVG" class="lineChart--svg">
           <defs>
