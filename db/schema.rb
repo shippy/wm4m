@@ -33,6 +33,8 @@ ActiveRecord::Schema.define(version: 20141101190313) do
     t.datetime "datetime"
   end
 
+  add_index "responses", ["user_id"], name: "index_responses_on_user_id"
+
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false

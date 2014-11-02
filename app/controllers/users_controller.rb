@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, except: :connect_pebble
 
   def index
     @users = User.all
@@ -12,4 +12,21 @@ class UsersController < ApplicationController
     end
   end
 
+  def connect_pebble
+    if params[:pebble_token]
+      @token = params[:pebble_token]
+    end
+
+    if params[:user]
+      @token = params[:user][:pebble_token]
+    end
+
+    if user_signed_in?
+      current_user.pebble_token = @token
+      current_user.save
+      render 'pebble_success', layout: 'minimal'
+    else
+      render layout: 'minimal'
+    end
+  end
 end

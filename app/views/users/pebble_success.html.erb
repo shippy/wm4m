@@ -1,0 +1,26 @@
+<h4>Your Pebble has been successfully linked to your account!</h4>
+<p><strong>Please, click 'Save' to confirm the connection.</strong></p>
+
+<form>
+  <button id="saveBtn">Save</button>
+</form>
+
+<script>
+function saveOptions() {
+	var options = {
+	  'confirmed': 1,
+	}
+	return options;
+}
+
+$().ready(function() {
+	$("#saveBtn").on("touchend",function() {
+	  console.log("Submitted after success");
+
+	  var location = "pebblejs://close#" + encodeURIComponent(JSON.stringify(saveOptions()));
+	  console.log("Warping to: " + location);
+	  console.log(location);
+	  document.location = location;
+	});
+});
+</script>
