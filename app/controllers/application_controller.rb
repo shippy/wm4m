@@ -10,8 +10,4 @@ class ApplicationController < ActionController::Base
       end
     end
   end
-
-  def after_sign_up_path_for(resource_or_scope)
-    setup_notice_path
-  end
 end

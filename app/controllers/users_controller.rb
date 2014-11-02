@@ -1,6 +1,11 @@
 class UsersController < ApplicationController
   before_filter :authenticate_user!, except: :connect_pebble
 
+
+  def after_sign_up_path_for(resource_or_scope)
+    setup_notice_path
+  end
+
   def index
     @users = User.all
   end
