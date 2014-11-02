@@ -6,8 +6,34 @@
 
 var UI = require('ui');
 var Vector2 = require('vector2');
+var Vibe = require('ui/vibe');
+var Settings = require('settings');
 
-var main = new UI.Window();
+// For demonstration purposes, to reset registration
+// localStorage['confirmed'] = 0;
+
+// TODO: Fetch from settings
+var user_id = 1;
+
+// Questions
+var t_stress_q = new UI.Text({
+    position: new Vector2(0, 30),
+    size: new Vector2(144, 30),
+    font: 'gothic-24-bold',
+    text: 'What is your \nstress level?',
+    textAlign: 'left'
+  });
+
+var t_happiness_q = new UI.Text({
+    position: new Vector2(0, 30),
+    size: new Vector2(144, 30),
+    font: 'gothic-24-bold',
+    text: 'What is your \nhappiness?',
+    textAlign: 'left'
+  });
+
+// Answers
+// var main = new UI.Window();
 var t_high = new UI.Text({
     position: new Vector2(0,0),
     size: new Vector2(144, 30),
@@ -30,22 +56,43 @@ var t_low = new UI.Text({
     textAlign: 'right'
   });
 
-var t_how_are_you = new UI.Text({
-    position: new Vector2(0, 30),
-    size: new Vector2(144, 30),
-    font: 'gothic-24-bold',
-    text: 'What is your \nstress level?',
-    textAlign: 'left'
+// Display function
+function displayQ(question, question_id, top_choice, mid_choice, low_choice, next_q) {
+  var i = question_id;
+  
+  // Set up window
+  var main = new UI.Window();
+  main.add(question);
+  main.add(top_choice);
+  main.add(mid_choice);
+  main.add(low_choice);
+  main.show();
+  
+  // Set up event responses
+  main.on('click', 'up', function(e) {
+    r = {'kind': i, 'level': 3, 'user_id': user_id, 'pebble_token': (Pebble.getAccountToken() + "_" + Pebble.getWatchToken())};
+    saveLastAnswer();
+    main.hide();
+    next_q();
   });
 
-main.add(t_how_are_you);
-main.add(t_high);
-main.add(t_med);
-main.add(t_low);
+  main.on('click', 'select', function(e) {
+    r = {'kind': i, 'level': 2, 'user_id': user_id, 'pebble_token': (Pebble.getAccountToken() + "_" + Pebble.getWatchToken())};
+    saveLastAnswer();
+    main.hide();
+    next_q();
+  });
 
-main.show();
+  main.on('click', 'down', function(e) {
+    r = {'kind': i, 'level': 1, 'user_id': user_id, 'pebble_token': (Pebble.getAccountToken() + "_" + Pebble.getWatchToken())};
+    saveLastAnswer();
+    main.hide();
+    next_q();
+  });
+}
 
-function gotIt () {
+// Display confirmation function
+function gotIt() {
   var wind = new UI.Window();
   var textfield = new UI.Text({
     position: new Vector2(0, 50),
@@ -55,9 +102,32 @@ function gotIt () {
     textAlign: 'center'
   });
   
+  // Display the text
   wind.add(textfield);
   wind.show();
   
+  // Hide it after two seconds, taking the user to menu
+  setTimeout(function() { wind.hide() }, 2000)
+}
+
+// Display suggestion to register
+function goRegister() {
+  var wind = new UI.Window();
+  var textfield = new UI.Text({
+    position: new Vector2(0, 30),
+    size: new Vector2(144, 130),
+    font: 'gothic-24-bold',
+    text: 'You are not signed\nin. On your phone,\n go to Pebble >\nWM4M > Settings.',
+    textAlign: 'center'
+  });
+  
+  // Display the text
+  wind.add(textfield);
+  wind.show();
+}
+
+// Submit last question
+function saveLastAnswer() {
   var ajax = require('ajax');
   ajax(
     {
@@ -67,30 +137,34 @@ function gotIt () {
       method: 'post'
     },
     
-    function(data) {
-      console.log('Quote of the day is: ' + data.contents.quote);
+    function(error) {
+      console.log('The AJAX request failed: ' + error);
     },
     
     function(error) {
-      console.log('The ajax request failed: ' + error);
+      console.log('The AJAX request succeeded: ' + error);
     }
   );
-  
-  wind.psleep(5000);
-  wind.hide();
 }
 
-main.on('click', 'up', function(e) {
-  r = {'kind': 1, 'level': 3, 'user_id': 1, 'pebble_token': (Pebble.getAccountToken() + "_" + Pebble.getWatchToken())};
-  gotIt();
+// Calls
+if (localStorage['confirmed'] == 1) {
+  Vibe.vibrate('double');
+  displayQ(t_stress_q, 1, t_high, t_med, t_low, function() { 
+    displayQ(t_happiness_q, 2, t_high, t_med, t_low, function() { gotIt(); })
+  });
+} else {
+  goRegister();
+}
+
+Pebble.addEventListener("showConfiguration", function (e) { 
+  console.log("configuration opened");
+  Pebble.openURL("http://watchme4me.herokuapp.com/pebble_settings/" + Pebble.getAccountToken() + "_" + Pebble.getWatchToken());
 });
 
-main.on('click', 'select', function(e) {
-  r = {'kind': 1, 'level': 2, 'user_id': 1, 'pebble_token': (Pebble.getAccountToken() + "_" + Pebble.getWatchToken())};
-  gotIt();
-});
-
-main.on('click', 'down', function(e) {
-  r = {'kind': 1, 'level': 1, 'user_id': 1, 'pebble_token': (Pebble.getAccountToken() + "_" + Pebble.getWatchToken())};
-  gotIt();
+Pebble.addEventListener("webviewclosed", function (e) {
+  console.log("configuration closed")
+  if (e.response != "CANCELLED" || e.response != "") {
+    localStorage['confirmed'] = 1;
+  }
 });
