@@ -21,9 +21,9 @@
   var no = $("#sadsum").data("lat");
 
 
-  var happy_d = "This is your happy meter! You have been happy more than half of the time! keep up the good work!";
-  var sad_d = "This is your happy meter, but it seems like you haven't been very happy lately. Maybe you should go see someone your care about."
-  var neutral_d = "This is your happy meter"
+  var happy_d = "This is your happy meter! You have been happy more than half of the time! Keep up the good work!";
+  var sad_d = "This is your happy meter. It seems you haven't been very happy lately :( Maybe you should go see someone you care about."
+  var neutral_d = "This is your happy meter!"
   var display_d = ""
 
   if (yes > .6) {
@@ -98,7 +98,7 @@
       },
       {
         color       : 'blue',
-        description : 'And this is your sad meter',
+        description : 'And this is your sad meter.',
         title       : 'trains',
         value       : no
       }
