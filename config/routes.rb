@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :contacts
 
   get 'dashboard' => 'dashboard#index'
+
   get 'dashboard/index'
 
   post 'responses/add'
