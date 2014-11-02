@@ -18,6 +18,8 @@ class ResponsesController < ApplicationController
          ((Response.where(kind: "2",user: current_user).pluck(:level).last(5).sum / 5.0) < 1.5)
           puts "Sending an e-mail triggered!"
           ContactMailer.depressing_email(current_user, current_user.contacts.sample).deliver
+      else
+        puts "Sending an e-mail not triggered!"
       end
       render status: 200, text: "Success (response saved)"
     else
