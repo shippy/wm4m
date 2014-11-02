@@ -5,20 +5,21 @@
       font-weight: 700;
       text-align: center;
      }
-.btn {
+.button {
   -webkit-border-radius: 7;
   -moz-border-radius: 7;
   border-radius: 7px;
   font-family: Arial;
   color: #ffffff;
-  font-size: 43px;
+  font-size: 36px;
   background: #e95265;
   padding: 10px 20px 10px 20px;
   text-decoration: none;
 }
 
-.btn:hover {
+.button:hover {
   background: #2fbdaa;
+  color: #ffffff;
   text-decoration: none;
 }
 
@@ -33,7 +34,7 @@
   </p>
   <br>
   <p style = "text-align: center">
-    <%= link_to 'Sign up today!', new_user_registration_path, class: '.btn ' %>
+    <%= link_to 'Sign up today!', new_user_registration_path, class: 'button' %>
 
   </p>
 </div>
