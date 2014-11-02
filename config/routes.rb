@@ -12,4 +12,7 @@ Rails.application.routes.draw do
   post 'responses/add'
 
   get 'pebble_settings/:pebble_token' => "users#connect_pebble", as: 'connect_pebble_sign_in'
+
+  get 'users/setup_notice', to: "users#setup_notice", as: "setup_notice"
+  get 'contacts/setup', to: "contacts#setup", as: "contacts_setup"
 end

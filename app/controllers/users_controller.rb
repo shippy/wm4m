@@ -29,4 +29,7 @@ class UsersController < ApplicationController
       render layout: 'minimal'
     end
   end
+
+  def setup_notice
+  end
 end
