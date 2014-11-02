@@ -1,4 +1,27 @@
+<style>
+.button {
+  -webkit-border-radius: 7;
+  -moz-border-radius: 7;
+  border-radius: 7px;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 24px;
+  background: #e95265;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+}
+
+.button:hover {
+  background: #2fbdaa;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+</style>
+
 <h2>You're almost there!</h2>
 <p>In order to take full advantage of WatchMe4Me, go download our Pebble app and follow the instructions there.</p>
 
+
+<%= image_tag("wm4mpebble.gif", :alt => "logo") %>
 <p><%= link_to "Continue to Contacts Setup", contacts_setup_path, class: "button" %></p>
