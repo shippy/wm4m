@@ -13,10 +13,9 @@ class ResponsesController < ApplicationController
     puts response_params
     puts response
 
-    puts Response.where(kind: "1", user: current_user).pluck(:level).last(5)
-    puts Response.where(kind: "2", user: current_user).pluck(:level).last(5)
-    
-    stress_mean = Response.where(kind: "1", user: current_user).pluck(:level).last(5).sum / 5.0
+    current_user = User.find(response_params[:response][:user_id])
+
+    stress_mean = Response.where(kind: "1", user_id: current_user).pluck(:level).last(5).sum / 5.0
     happiness_mean = Response.where(kind: "2",user: current_user).pluck(:level).last(5).sum / 5.0
     threshold = 1.5
 
