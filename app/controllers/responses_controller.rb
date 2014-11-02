@@ -14,9 +14,10 @@ class ResponsesController < ApplicationController
     puts response
 
     if response.save
-      if ((Response.where(kind: "1", user: current_user).pluck(:level).last(5).sum / 5.0) > 1.5) &&
-          ((Response.where(kind: "2",user:current_user).pluck(:level).last(5).sum / 5.0) < 1.5)
-        ContactMailer.depressing_email(current_user, current_user.contacts.sample).deliver
+      if ((Response.where(kind: "1", user: current_user).pluck(:level).last(5).sum / 5.0) > 1.5) && \
+         ((Response.where(kind: "2",user: current_user).pluck(:level).last(5).sum / 5.0) < 1.5)
+          puts "Sending an e-mail triggered!"
+          ContactMailer.depressing_email(current_user, current_user.contacts.sample).deliver
       end
       render status: 200, text: "Success (response saved)"
     else
